@@ -123,6 +123,7 @@ private[macros] object Transform {
    *
    *  will be implemented by
    *
+   *    @static
    *    def f(toolbox: Toolbox, prefix: toolbox.Tree)
    *         (T: toolbox.TypeTree)
    *         (a: toolbox.Tree)(b: toolbox.Tree): toolbox.Tree = body
@@ -162,7 +163,8 @@ private[macros] object Transform {
     }
 
     val body = mapper.transform(rhs)
-    DefDef(defn.name, Nil, params, treeType, body).withFlags(Synthetic)
+    val mods = EmptyModifiers.withFlags(Synthetic | JavaStatic)
+    DefDef(defn.name, Nil, params, treeType, body).withMods(mods)
   }
 
   /** create object A$inline to hold all macros implementations for class A */
