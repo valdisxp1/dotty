@@ -149,7 +149,7 @@ private[macros] object Transform {
       }
 
     val params =
-      if (typeParams.size > 0) List(prefix) :: typeParams :: termParams
+      if (typeParams.size > 0) List(toolbox, prefix) :: typeParams :: termParams
       else List(toolbox, prefix) :: termParams
 
     // replace `this` with `prefix`
