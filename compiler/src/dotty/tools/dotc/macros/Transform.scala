@@ -27,10 +27,11 @@ import config.Printers.{ macros => debug }
  *  to:
  *
  *    class main {
- *      <macro> def f[T](a: A)(b: B): C = null
+ *      <macro> def f[T](a: A)(b: B): C = ???
  *    }
  *
  *    object main$inline {
+ *      @static
  *      def f(prefix: scala.meta.Term)(T: scala.meta.Type)(a: scala.meta.Term)(b: scala.meta.Term): scala.meta.Tree = body
  *    }
  */
@@ -123,6 +124,7 @@ private[macros] object Transform {
    *
    *  will be implemented by
    *
+   *    @static
    *    def f(prefix: scala.meta.Term)
    *         (T: scala.meta.Type)
    *         (a: scala.meta.Term)(b: scala.meta.Term): scala.meta.Tree = body
@@ -164,7 +166,7 @@ private[macros] object Transform {
     }
 
     val body = mapper.transform(rhs)
-    DefDef(defn.name, Nil, params, treeType, body).withFlags(Synthetic)
+    DefDef(defn.name, Nil, params, treeType, body).withFlags(Synthetic | JavaStatic)
   }
 
   /** create object A$inline to hold all macros implementations for class A */
