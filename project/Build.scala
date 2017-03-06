@@ -14,7 +14,7 @@ object DottyBuild extends Build {
 
   val scalacVersion = "2.11.5" // Do not rename, this is grepped in bin/common.
 
-  val dottyOrganization = "ch.epfl.lamp"
+  val dottyOrganization = "me.valdis.test"
   val dottyVersion = {
     val baseVersion = "0.1.1"
     val isNightly = sys.env.get("NIGHTLYBUILD") == Some("yes")
