@@ -8,6 +8,8 @@ object parseFile extends ParserTest {
       val tree = parse(arg)
       println("parsed: " + arg)
       println(tree.show)
+      println("----")
+      println(tree.toString)
     }
   }
 }
